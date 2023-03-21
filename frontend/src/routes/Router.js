@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Homepage from './Homepage';
 import LoginForm from '../auth/LoginForm';
 import SignupForm from '../auth/SignupForm';
-//import Profile from '../authentication/Profile';
+//import Profile from '../auth/Profile';
 import UserContext from '../auth/UserContext';
 
 function ProtectedRoute({ user, redirect = "/" }) {

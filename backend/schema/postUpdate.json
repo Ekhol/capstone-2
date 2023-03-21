@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "minLength": 1
+        },
+        "postText": {
+            "type": "string",
+            "minLength": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "postText",
+        "template"
+    ]
+}

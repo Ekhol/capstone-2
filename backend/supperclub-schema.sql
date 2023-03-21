@@ -6,7 +6,7 @@ CREATE TABLE users (
     last_name TEXT NOT NULL,
     bio TEXT,
     profile_picture TEXT,
-    is_public BOOLEAN NOT NULL DEFAULT FALSE,
+    is_public BOOLEAN NOT NULL DEFAULT TRUE,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
     country_id INTEGER REFERENCES country ON DELETE CASCADE
 );
@@ -21,7 +21,7 @@ CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     post_text TEXT NOT NULL,
-    template TEXT NOT NULL DEFAULT,
+    template TEXT NOT NULL,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     country_id INTEGER REFERENCES country ON DELETE CASCADE
 );

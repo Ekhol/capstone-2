@@ -75,8 +75,8 @@ function App() {
   if (!dataLoaded) return <Loading />;
 
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ my: 4 }}>
+    <Container maxWidth="xl">
+      <Box sx={{ my: 2 }}>
         <BrowserRouter>
           <UserContext.Provider value={{ currentUser, setCurrentUser }}>
             <div>

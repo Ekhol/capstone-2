@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "properties": {
+        "commentText": {
+            "type": "string",
+            "minLength": 1
+        },
+        "userId": {
+            "type": "integer"
+        },
+        "postId": {
+            "type": "integer"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "commentText",
+        "userId",
+        "postId"
+    ]
+}

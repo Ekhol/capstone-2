@@ -9,13 +9,15 @@ class Post {
     //Creates a new post!
     static async create(data) {
         const res = await db.query(
-            `INSERT INTO posts (post_text,
+            `INSERT INTO posts (title,
+                                post_text,
                                 template,
                                 user_id,
                                 country_id)
-            VALUES ($1, $2, $3, $4)
+            VALUES ($1, $2, $3, $4, $5)
             RETURNING id, post_text AS "postText", template, user_id AS "userId", country_id AS "countryId"`,
             [
+                data.title,
                 data.postText,
                 data.template,
                 data.userId,
@@ -28,8 +30,8 @@ class Post {
         return post;
     }
 
-    //GETs all posts with optional filters for user, author's current country, and template.
-    static async findAll({ user, country, template } = {}) {
+    //GETs all posts with optional filters for user, author's current country, template, and title.
+    static async findAll({ user, country, template, title } = {}) {
         let query = `SELECT p.id,
                         p.title AS "title",
                         p.post_text AS "postText",
@@ -44,28 +46,53 @@ class Post {
         let whereExp = [];
         let queryVal = [];
 
-        if (country !== undefined) {
-            queryVal.push(country);
-            whereExp.push(`p.country_id = ${queryVal.length}`);
-        }
-
         if (user !== undefined) {
             queryVal.push(user);
-            whereExp.push(`p.user_id = ${queryVal.length}`);
+            whereExp.push(`p.user_id = $${queryVal.length}`);
+        }
+
+        if (country !== undefined) {
+            queryVal.push(country);
+            whereExp.push(`p.country_id = $${queryVal.length}`);
         }
 
         if (template !== undefined) {
             queryVal.push(template);
-            whereExp.push(`p.template = ${queryVal.length}`);
+            whereExp.push(`p.template = $${queryVal.length}`);
+        }
+
+        if (title !== undefined) {
+            queryVal.push(`%${title}%`);
+            whereExp.push(`p.title ILIKE $${queryVal.length}`);
         }
 
         if (whereExp.length > 0) {
-            query += " WHERE " + whereExp[0];
+            query += " WHERE p.is_public = TRUE AND " + whereExp.join(" AND ");
         }
 
         query += " ORDER BY title";
         const res = await db.query(query, queryVal);
         return res.rows;
+    }
+
+    //GET posts by user ID for private users.
+    static async findPrivate(userId) {
+        let postQuery = await db.query(
+            `SELECT p.id,
+                        p.title AS "title",
+                        p.post_text AS "postText",
+                        p.template,
+                        u.username AS "username",
+                        u.profile_picture AS "profilePicture",
+                        u.is_public AS "isPublic",
+                        c.name AS "countryName",
+                    FROM posts p
+                    LEFT JOIN users AS u ON p.user_id = u.id
+                    LEFT JOIN country AS c ON p.country_id = c.id
+                    WHERE u.is_public = FALSE AND u.id = $1`,
+            [userId],
+        );
+        return postQuery.rows;
     }
 
     //GETs post information from post with specific ID.
@@ -84,7 +111,6 @@ class Post {
 
         return post;
     }
-
 
     //PATCHes the title and text of a specific post.
     static async update(id, data) {

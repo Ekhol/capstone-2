@@ -72,21 +72,15 @@ class User {
             password,
             first_name,
             last_name,
-            bio,
-            profile_picture,
-            is_public,
             is_admin,
             country_id)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-            RETURNING username, first_name AS "firstName", last_name AS "lastName", bio, profile_picture AS "profilePicture", is_public AS "isPublic, country_id AS "countryId"`,
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING username, first_name AS "firstName", last_name AS "lastName", is_admin AS "isAdmin", country_id AS "countryId"`,
             [
                 username,
                 hashedPassword,
                 firstName,
                 lastName,
-                bio,
-                profilePicture,
-                isPublic,
                 isAdmin,
                 countryId,
             ],

@@ -10,9 +10,9 @@ class Comment {
         const res = await db.query(
             `INSERT INTO comments (comment_text AS "commentText",
                                 user_id AS "userId",
-                                post_id AS "postID")
+                                post_id AS "postId")
             VALUES ($1, $2, $3)
-            RETURNING comment_text AS "commentText", user_id AS "userID", post_id AS "postId"`,
+            RETURNING comment_text AS "commentText", user_id AS "userId", post_id AS "postId"`,
             [
                 data.commentText,
                 data.userId,

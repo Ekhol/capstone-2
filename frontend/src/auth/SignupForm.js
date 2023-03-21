@@ -21,14 +21,14 @@ function SignupForm({ signup }) {
         password: '',
         firstName: '',
         lastName: '',
-        country: '',
+        countryId: 1,
     });
 
     async function handleSubmit(e) {
         e.preventDefault();
         let res = await signup(formData);
         if (res.success) {
-            navigate('/companies');
+            navigate('/');
         }
     }
 
@@ -102,10 +102,10 @@ function SignupForm({ signup }) {
                                     <Select
                                         labelId="simple-select-standard-label"
                                         id="simple-select-standard"
-                                        value={formData.country}
+                                        value={formData.countryId}
                                         onChange={handleChange}
                                         label="Country"
-                                        name='country'
+                                        name='countryId'
                                         required
                                     >
                                         <MenuItem value={1}>United States</MenuItem>

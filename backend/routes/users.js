@@ -12,7 +12,7 @@ const userUpdateSchema = require('../schema/userUpdate.json');
 
 const router = express.Router();
 
-//Registers a new user.
+//Registration endpoint for Admins to add users..
 router.post('/', ensureAdmin, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, userNewSchema);
