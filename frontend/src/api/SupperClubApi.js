@@ -43,6 +43,37 @@ class SupperClubApi {
         let res = await this.request('auth/token', loginDetails, 'post');
         return res.token;
     }
+
+    //BLOG and RECIPE API calls:
+    static async addPost(postDetails) {
+        let res = await this.request(`posts`, postDetails, 'post');
+        return res.post;
+    }
+
+    static async getPublicPosts(title) {
+        let res = await this.request(`posts`, { title }, 'get');
+        return res.posts;
+    }
+
+    static async getPrivatePosts(userId) {
+        let res = await this.request(`posts/${userId}`, 'get');
+        return res.posts;
+    }
+
+    static async getPost(postId) {
+        let res = await this.request(`posts/${postId}`, 'get');
+        return res.post;
+    }
+
+    static async updatePost(postId, postDetails) {
+        let res = await this.request(`posts/${postId}`, postDetails, 'patch');
+        return res.post;
+    }
+
+    static async deletePost(postId) {
+        let res = await this.request(`posts/${postId}`, 'delete');
+        return res.message;
+    }
 }
 
 export default SupperClubApi;

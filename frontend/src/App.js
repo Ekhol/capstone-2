@@ -24,6 +24,8 @@ function App() {
     'token=', token,
   );
 
+
+  //User Specific functions.
   useEffect(function getUserInfo() {
     console.debug('App useEffect getUserInfo', 'token=', token);
 

@@ -95,7 +95,8 @@ class Post {
         return postQuery.rows;
     }
 
-    //GETs post information from post with specific ID.
+    //GETs post information from post with specific ID and all comments with the 
+    //same post_id.
     static async get(id) {
         const postRes = await db.query(
             `SELECT title,
@@ -108,6 +109,17 @@ class Post {
         const post = postRes.rows[0];
 
         if (!post) throw new NotFoundError(`Post Not Found. ID: ${id}`);
+
+        const commentsRes = await db.query(
+            `SELECT id,
+                    comment_text AS "commentText",
+                    user_id AS "userId"
+            FROM comments
+            WHERE post_id = $1`,
+            [id],
+        );
+
+        post.comments = commentsRes.rows;
 
         return post;
     }
