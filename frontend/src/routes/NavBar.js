@@ -14,6 +14,7 @@ function NavBar({ logout }) {
     function loggedIn() {
         return (
             <React.Fragment>
+                <Button href='/posts/new' sx={{ my: 2, color: 'white', display: 'block' }}>New Post</Button>
                 <Button onClick={logout} sx={{ my: 2, color: 'white', display: 'block' }}>Log Out</Button>
             </React.Fragment>
         );
@@ -49,6 +50,7 @@ function NavBar({ logout }) {
                         SupperClub
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Button href='/posts' sx={{ my: 2, color: 'white', display: 'block' }}>User Posts</Button>
                         {currentUser ? loggedIn() : loggedOut()}
                     </Box>
                 </Toolbar>

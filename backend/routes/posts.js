@@ -48,16 +48,6 @@ router.get('/', async function (req, res, next) {
     }
 });
 
-//GETs private posts for correct user or admin.
-router.get('/:userId', ensureCorrectUserOrAdmin, async function (req, res, next) {
-    try {
-        const posts = await Post.findPrivate(req.params.userId);
-        return res.json({ posts });
-    } catch (err) {
-        return next(err);
-    }
-});
-
 //GETs information on single post.
 router.get('/:id', async function (req, res, next) {
     try {

@@ -46,22 +46,17 @@ class SupperClubApi {
 
     //BLOG and RECIPE API calls:
     static async addPost(postDetails) {
-        let res = await this.request(`posts`, postDetails, 'post');
+        let res = await this.request(`posts/`, postDetails, 'post');
         return res.post;
     }
 
     static async getPublicPosts(title) {
-        let res = await this.request(`posts`, { title }, 'get');
-        return res.posts;
-    }
-
-    static async getPrivatePosts(userId) {
-        let res = await this.request(`posts/${userId}`, 'get');
+        let res = await this.request(`posts/`, { title });
         return res.posts;
     }
 
     static async getPost(postId) {
-        let res = await this.request(`posts/${postId}`, 'get');
+        let res = await this.request(`posts/${postId}`);
         return res.post;
     }
 

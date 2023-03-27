@@ -46,3 +46,6 @@ VALUES ('United States', 'American'),
     ('Tunisia', 'Tunisian'),
     ('Turkey', 'Turkish'),
     ('Vietnam', 'Vietnamese');
+
+INSERT INTO posts (title, post_text, template, user_id, country_id)
+VALUES ('Test Post', 'This is a test post!', 'recipe', 123457, 1);

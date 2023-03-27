@@ -18,7 +18,8 @@ class User {
     //the user is not found or the password is wrong.
     static async authenticate(username, password) {
         const result = await db.query(
-            `SELECT username,
+            `SELECT id,
+                username,
                 password,
                 first_name AS "firstName",
                 last_name AS "lastName",
@@ -94,12 +95,14 @@ class User {
     //GET data on single user.
     static async get(username) {
         const userRes = await db.query(
-            `SELECT username,
+            `SELECT id,
+                username,
                 first_name AS "firstName",
                 last_name AS "lastName",
                 bio,
                 profile_picture AS "profilePicture",
-                is_public AS "isPublic"
+                is_public AS "isPublic",
+                country_id AS "countryId"
             FROM users
             WHERE username = $1`,
             [username],

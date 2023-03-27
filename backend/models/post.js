@@ -39,7 +39,7 @@ class Post {
                         u.username AS "username",
                         u.profile_picture AS "profilePicture",
                         u.is_public AS "isPublic",
-                        c.name AS "countryName",
+                        c.name AS "countryName"
                     FROM posts p
                     LEFT JOIN users AS u ON p.user_id = u.id
                     LEFT JOIN country AS c ON p.country_id = c.id`;
@@ -67,7 +67,7 @@ class Post {
         }
 
         if (whereExp.length > 0) {
-            query += " WHERE p.is_public = TRUE AND " + whereExp.join(" AND ");
+            query += " WHERE " + whereExp.join(" AND ");
         }
 
         query += " ORDER BY title";
@@ -75,34 +75,20 @@ class Post {
         return res.rows;
     }
 
-    //GET posts by user ID for private users.
-    static async findPrivate(userId) {
-        let postQuery = await db.query(
-            `SELECT p.id,
-                        p.title AS "title",
-                        p.post_text AS "postText",
-                        p.template,
-                        u.username AS "username",
-                        u.profile_picture AS "profilePicture",
-                        u.is_public AS "isPublic",
-                        c.name AS "countryName",
-                    FROM posts p
-                    LEFT JOIN users AS u ON p.user_id = u.id
-                    LEFT JOIN country AS c ON p.country_id = c.id
-                    WHERE u.is_public = FALSE AND u.id = $1`,
-            [userId],
-        );
-        return postQuery.rows;
-    }
-
     //GETs post information from post with specific ID and all comments with the 
     //same post_id.
     static async get(id) {
         const postRes = await db.query(
-            `SELECT title,
-                    post_text AS "postText"
-            FROM posts
-            WHERE id = $1`,
+            `SELECT p.id,
+                    p.title,
+                    u.username AS "username",
+                    u.is_public AS "isPublic",
+                    p.post_text AS "postText",
+                    p.user_id AS "userId",
+                    p.country_id AS "countryId"
+            FROM posts p
+            LEFT JOIN users AS u ON p.user_id = u.id
+            WHERE p.id = $1`,
             [id],
         );
 
@@ -118,6 +104,7 @@ class Post {
             WHERE post_id = $1`,
             [id],
         );
+
 
         post.comments = commentsRes.rows;
 
