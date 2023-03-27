@@ -42,7 +42,8 @@ class Post {
                         c.name AS "countryName"
                     FROM posts p
                     LEFT JOIN users AS u ON p.user_id = u.id
-                    LEFT JOIN country AS c ON p.country_id = c.id`;
+                    LEFT JOIN country AS c ON p.country_id = c.id
+                    WHERE u.is_public = true `;
         let whereExp = [];
         let queryVal = [];
 
@@ -67,7 +68,7 @@ class Post {
         }
 
         if (whereExp.length > 0) {
-            query += " WHERE " + whereExp.join(" AND ");
+            query + whereExp.join(" AND ");
         }
 
         query += " ORDER BY title";
@@ -97,10 +98,12 @@ class Post {
         if (!post) throw new NotFoundError(`Post Not Found. ID: ${id}`);
 
         const commentsRes = await db.query(
-            `SELECT id,
-                    comment_text AS "commentText",
-                    user_id AS "userId"
-            FROM comments
+            `SELECT c.id,
+                    c.comment_text AS "commentText",
+                    c.user_id AS "userId",
+                    u.username AS "username"
+            FROM comments c
+            LEFT JOIN users AS u ON c.user_id = u.id
             WHERE post_id = $1`,
             [id],
         );

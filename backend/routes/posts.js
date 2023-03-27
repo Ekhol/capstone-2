@@ -13,7 +13,7 @@ const postSearchSchema = require('../schema/postSearch.json');
 const router = express.Router();
 
 //Verifies the user is correct or admin and submits a new post.
-router.post('/', ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.post('/', ensureLoggedIn, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, postNewSchema);
         if (!validator.valid) {

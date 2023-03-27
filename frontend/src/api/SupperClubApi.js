@@ -69,6 +69,12 @@ class SupperClubApi {
         let res = await this.request(`posts/${postId}`, 'delete');
         return res.message;
     }
+
+    //COMMENT API calls:
+    static async addComment(commentDetails) {
+        let res = await this.request(`comments/`, commentDetails, 'post');
+        return res.comment;
+    }
 }
 
 export default SupperClubApi;

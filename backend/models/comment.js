@@ -8,9 +8,9 @@ class Comment {
     //Creates a new comment.
     static async create(data) {
         const res = await db.query(
-            `INSERT INTO comments (comment_text AS "commentText",
-                                user_id AS "userId",
-                                post_id AS "postId")
+            `INSERT INTO comments (comment_text,
+                                user_id,
+                                post_id)
             VALUES ($1, $2, $3)
             RETURNING comment_text AS "commentText", user_id AS "userId", post_id AS "postId"`,
             [

@@ -48,4 +48,8 @@ VALUES ('United States', 'American'),
     ('Vietnam', 'Vietnamese');
 
 INSERT INTO posts (title, post_text, template, user_id, country_id)
-VALUES ('Test Post', 'This is a test post!', 'recipe', 123457, 1);
+VALUES ('Test Post', 'This is a test post!', 'recipe', 123457, 1),
+    ('Public TestPost', 'This is a public test post!', 'blog', 123456, 2);
+
+INSERT INTO comments (comment_text, user_id, post_id)
+VALUES ('Public Test Comment', 123457, 2);

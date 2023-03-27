@@ -5,7 +5,7 @@ const { NotFoundError } = require("../expressError");
 
 class Country {
 
-    //GETs a country and the related users and posts.
+    //GETs a country by ID and the related users and posts.
     static async get(id) {
         const countryRes = await db.query(
             `SELECT name,
@@ -45,6 +45,18 @@ class Country {
         country.posts = postsRes.rows;
 
         return country;
+    }
+
+    //GETs all country IDs, names, and cuisines.
+    static async getAll() {
+        const countries = await db.query(
+            `SELECT id,
+                    name,
+                    cuisine
+            FROM country`
+        )
+
+        return countries;
     }
 }
 
