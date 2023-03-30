@@ -34,10 +34,13 @@ class Country {
         country.users = usersRes.rows;
 
         const postsRes = await db.query(
-            `SELECT id, 
-                post_text AS "postText"
-            FROM posts
-            WHERE country_id = $1
+            `SELECT p.id, 
+                p.post_text AS "postText",
+                p.title AS "title",
+                u.username AS "username"
+            FROM posts p
+            LEFT JOIN users AS u ON p.user_id = u.id
+            WHERE p.country_id = $1
             ORDER BY id`,
             [id],
         );
