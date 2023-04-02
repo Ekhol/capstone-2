@@ -86,6 +86,11 @@ class SupperClubApi {
         let res = await this.request(`countries/${id}`);
         return res.users;
     }
+
+    static async getCountries() {
+        let res = await this.request(`countries/`);
+        return res.countries;
+    }
 }
 
 export default SupperClubApi;

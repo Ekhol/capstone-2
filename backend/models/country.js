@@ -52,12 +52,14 @@ class Country {
 
     //GETs all country IDs, names, and cuisines.
     static async getAll() {
-        const countries = await db.query(
+        const countryRes = await db.query(
             `SELECT id,
                     name,
                     cuisine
             FROM country`
-        )
+        );
+
+        const countries = countryRes.rows;
 
         return countries;
     }

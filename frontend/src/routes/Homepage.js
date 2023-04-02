@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import UserContext from "../auth/UserContext";
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import CountriesList from "../countries/CountriesList";
+//import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 function Homepage() {
     const { currentUser } = useContext(UserContext);
@@ -31,12 +33,18 @@ function Homepage() {
     }
 
     return (
-        <Container maxWidth='x1'>
-            <Box
-                mt={6}
-                justifyContent="center"
-                alignItems="center"
-            >
+        <Grid container spacing={2}>
+            <Grid item xs={4}>
+                <Box
+                    mt={2}
+                >
+                    <Typography variant="h3">
+                        Countries
+                    </Typography>
+                    <CountriesList />
+                </Box>
+            </Grid>
+            <Grid item xs={8}>
                 <Box
                     display="flex"
                     justifyContent="center"
@@ -76,8 +84,8 @@ function Homepage() {
                 >
                     {currentUser ? loggedIn() : loggedOut()}
                 </Box>
-            </Box>
-        </Container>
+            </Grid>
+        </Grid>
     );
 }
 

@@ -27,6 +27,7 @@ function Router({ login, signup }) {
             <Route path="/posts" element={<PostList />} />
             <Route path='/posts/:id' element={<PostDetail />} />
             <Route path='/posts/:id/comment' element={<NewCommentForm />} />
+
             <Route element={<ProtectedRoute user={currentUser} />}>
                 <Route path="/posts/new" element={<NewPostForm />} />
             </Route>
