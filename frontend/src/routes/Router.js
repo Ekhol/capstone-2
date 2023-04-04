@@ -9,6 +9,7 @@ import NewPostForm from '../posts/newPostForm';
 import UserContext from '../auth/UserContext';
 import PostDetail from '../posts/postDetail';
 import NewCommentForm from '../posts/newCommentForm';
+import CountryRoute from './CountryRoute';
 
 function ProtectedRoute({ user, redirect = "/" }) {
     if (!user) {
@@ -27,7 +28,7 @@ function Router({ login, signup }) {
             <Route path="/posts" element={<PostList />} />
             <Route path='/posts/:id' element={<PostDetail />} />
             <Route path='/posts/:id/comment' element={<NewCommentForm />} />
-
+            <Route path='/country/:id' element={<CountryRoute />} />
             <Route element={<ProtectedRoute user={currentUser} />}>
                 <Route path="/posts/new" element={<NewPostForm />} />
             </Route>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 import PostCard from '../posts/postCard';
 import SupperClubApi from '../api/SupperClubApi';
 import Loading from '../helpers/LoadingHelper';
 import Box from '@mui/material/Box';
 
-function Country() {
+function Country(id) {
     console.debug('Country');
-    const { id } = useParams();
+    //const { id } = useParams();
     const [posts, setPosts] = useState(null);
 
     useEffect(function getPosts() {
