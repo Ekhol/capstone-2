@@ -27,38 +27,68 @@ function PostDetail() {
 
     return (
         <Container maxWidth='xl'>
-            <Typography variant='h3'>{post.title}</Typography>
-            <Typography variant='h5'
-                component={Link}
-                to='/'
-                sx={{ underline: 'hover' }}
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
             >
-                {post.username}
-            </Typography>
-            <Typography variant='p'>{post.postText}</Typography>
+                <Typography variant='h3'>{post.title}</Typography>
+            </Box>
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+            >
+                <Typography variant='h5'
+                    component={Link}
+                    to='/'
+                    sx={{ underline: 'hover' }}
+                >
+                    {post.username}
+                </Typography>
+            </Box>
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+            >
+                <Typography variant='p'>{post.postText}</Typography>
+            </Box>
             <Container maxWidth='lg'>
-                {post.comments.length
-                    ? (
-                        <div>
-                            {post.comments.map(c => (
-                                <Box>
-                                    <CommentCard
-                                        userId={c.userId}
-                                        username={c.username}
-                                        commentText={c.commentText}
-                                    />
-                                </Box>
-                            ))}
-                        </div>
-                    ) : (
-                        <Typography variant='h4'>
-                            No Comments Yet!
-                        </Typography>
-                    )}
+                <Box
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    {post.comments.length
+                        ? (
+                            <div>
+                                {post.comments.map(c => (
+                                    <Box>
+                                        <CommentCard
+                                            userId={c.userId}
+                                            username={c.username}
+                                            commentText={c.commentText}
+                                        />
+                                    </Box>
+                                ))}
+                            </div>
+                        ) : (
+                            <Typography variant='h4'>
+                                No Comments Yet!
+                            </Typography>
+                        )}
+                </Box>
             </Container>
-            <Typography variant='h5' component={Link} to={NEW_COMMENT_ROUTE} postId={post.id}>
-                Submit New Comment?
-            </Typography>
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+            >
+                <Typography variant='h5' component={Link} to={NEW_COMMENT_ROUTE} postId={post.id}>
+                    Submit New Comment?
+                </Typography>
+            </Box>
         </Container>
     );
 }

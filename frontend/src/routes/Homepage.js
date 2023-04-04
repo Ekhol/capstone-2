@@ -44,7 +44,7 @@ function Homepage() {
                     <CountriesList />
                 </Box>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={'auto'}>
                 <Box
                     display="flex"
                     justifyContent="center"
@@ -74,7 +74,7 @@ function Homepage() {
                         variant="p"
                         sx={{ my: 2, color: 'inherit', display: 'block' }}
                     >
-                        FILLER TEXT IGNORE ME PLEASE.
+                        A Resource for Hungry People at Home and Abroad.
                     </Typography>
                 </Box>
                 <Box

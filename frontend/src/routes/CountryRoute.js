@@ -12,6 +12,7 @@ import MealDBList from '../countries/MealDBList';
 function CountryRoute() {
     const { id } = useParams();
     const [country, setCountry] = useState(null);
+    console.debug(country);
 
     useEffect(function getCountry() {
         console.debug('CountryRoute useEffect getPosts');
@@ -33,7 +34,7 @@ function CountryRoute() {
                     <MealDBList cuisine={country.cuisine} />
                 </Box>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={'auto'}>
                 <Box
                     display="flex"
                     justifyContent="center"

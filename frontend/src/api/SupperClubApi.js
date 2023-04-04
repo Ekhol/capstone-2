@@ -94,6 +94,7 @@ class SupperClubApi {
 
     static async getCountry(id) {
         let res = await this.request(`countries/${id}`);
+        console.debug(res.country);
         return res.country;
     }
 }

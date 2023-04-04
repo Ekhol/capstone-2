@@ -5,18 +5,23 @@ import MealDBApi from '../api/MealDBApi';
 
 function MealDBList(cuisine) {
     console.debug('MealDBList');
-    const [meals, setMeals] = useState(null);
+    const [mdbCountry, setmdbCountry] = useState(null);
+    const qcuisine = cuisine;
+    console.debug(mdbCountry);
 
-    useEffect(function getDBMeals() {
+    useEffect(function getMDBCountry() {
         console.debug('MealDBList useEffect GetDBMeals');
         async function getPreliminaryMeals() {
-            setMeals(await MealDBApi.getMeals(cuisine));
+            const country = await MealDBApi.getMeals(qcuisine);
+            console.debug(country);
+            setmdbCountry(country);
         }
         getPreliminaryMeals();
-    }, [cuisine]);
+    }, [qcuisine]);
 
-    console.log(meals);
-    if (!meals) return <Loading />;
+    if (!mdbCountry) return <Loading />;
+
+    const meals = mdbCountry.meals;
 
     return (
         <div>
