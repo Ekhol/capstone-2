@@ -60,7 +60,7 @@ function LoginForm({ login }) {
                                     required
                                 />
                             </div>
-                            <Button type='submit' onClick={handleSubmit} sx={{ my: 2, color: 'black', display: 'block' }}>
+                            <Button type='submit' onClick={handleSubmit} sx={{ my: 2, color: 'white', display: 'block' }}>
                                 Enter
                             </Button>
                         </form>
