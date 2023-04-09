@@ -13,7 +13,7 @@ function PostCard({ id, title, username }) {
                     variant='h4'
                     component={Link}
                     to={ROUTE}
-                    sx={{ underline: 'hover' }}>
+                    sx={{ underline: 'hover', textDecoration: 'none' }}>
                     {title}
                 </Typography>
                 <Typography variant='h5'>{username}</Typography>

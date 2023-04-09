@@ -27,8 +27,8 @@ function NewPostForm() {
     async function handleSubmit(e) {
         e.preventDefault();
         let res = await SupperClubApi.addPost(postData);
-        if (res.success) {
-            navigate(`/users/${currentUser.id}`);
+        if (res) {
+            navigate(`/posts/${res.id}`);
         }
     }
 
@@ -48,9 +48,11 @@ function NewPostForm() {
             <Box sx={{ my: 2 }}>
                 <Card sx={{ minWidth: 300 }}>
                     <CardContent>
-                        <Typography variant='h5'>
-                            New Post
-                        </Typography>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Typography variant='h5'>
+                                New Post
+                            </Typography>
+                        </Box>
                         <form onSubmit={handleSubmit}>
                             <div className='form-group'>
                                 <TextField
@@ -77,12 +79,13 @@ function NewPostForm() {
                             </div>
                             <div className='form-group'>
                                 <TextField
+                                    fullWidth
                                     id='outlined-multiline-flexible'
                                     label='Text'
                                     value={postData.postText}
                                     name='postText'
-                                    placeholder='Placeholder'
-                                    minRows={10}
+                                    multiline
+                                    maxRows={10}
                                     onChange={handleChange}
                                 />
                             </div>

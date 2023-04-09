@@ -9,8 +9,16 @@ import Box from '@mui/material/Box';
 import jwt from 'jsonwebtoken';
 import NavBar from './routes/NavBar';
 import Loading from './helpers/LoadingHelper';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export const TOKEN_STORAGE = 'storage-token';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -77,18 +85,21 @@ function App() {
   if (!dataLoaded) return <Loading />;
 
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ my: 2 }}>
-        <BrowserRouter>
-          <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-            <div>
-              <NavBar logout={logout} />
-              <Router login={login} signup={signup} />
-            </div>
-          </UserContext.Provider>
-        </BrowserRouter>
-      </Box>
-    </Container>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Container maxWidth="xl">
+        <Box sx={{ my: 2 }}>
+          <BrowserRouter>
+            <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+              <div>
+                <NavBar logout={logout} />
+                <Router login={login} signup={signup} />
+              </div>
+            </UserContext.Provider>
+          </BrowserRouter>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
 

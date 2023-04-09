@@ -39,11 +39,7 @@ function PostDetail() {
                 justifyContent='center'
                 alignItems='center'
             >
-                <Typography variant='h5'
-                    component={Link}
-                    to='/'
-                    sx={{ underline: 'hover' }}
-                >
+                <Typography variant='h5'>
                     {post.username}
                 </Typography>
             </Box>
@@ -52,7 +48,7 @@ function PostDetail() {
                 justifyContent='center'
                 alignItems='center'
             >
-                <Typography variant='p'>{post.postText}</Typography>
+                <Typography variant='p' align='center'>{post.postText}</Typography>
             </Box>
             <Container maxWidth='lg'>
                 <Box
@@ -85,7 +81,7 @@ function PostDetail() {
                 justifyContent='center'
                 alignItems='center'
             >
-                <Typography variant='h5' component={Link} to={NEW_COMMENT_ROUTE} postId={post.id}>
+                <Typography sx={{ textDecoration: 'none' }} variant='h5' component={Link} to={NEW_COMMENT_ROUTE} postId={post.id}>
                     Submit New Comment?
                 </Typography>
             </Box>

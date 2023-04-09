@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
+
 function Homepage() {
     const { currentUser } = useContext(UserContext);
 
@@ -26,8 +27,8 @@ function Homepage() {
     function loggedOut() {
         return (
             <React.Fragment>
-                <Button href='/login' sx={{ my: 2, color: 'black', display: 'block' }}>Log In</Button>
-                <Button href='/signup' sx={{ my: 2, color: 'black', display: 'block' }}>Register</Button>
+                <Button href='/login' sx={{ my: 2, color: 'white', display: 'block' }}>Log In</Button>
+                <Button href='/signup' sx={{ my: 2, color: 'white', display: 'block' }}>Register</Button>
             </React.Fragment>
         )
     }
