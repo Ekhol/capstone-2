@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RapidApiKey } from '../../config';
 
 class MealDBApi {
 
@@ -9,7 +10,7 @@ class MealDBApi {
             url: 'https://themealdb.p.rapidapi.com/filter.php',
             params: { a: `${cuisine}` },
             headers: {
-                'X-RapidAPI-Key': '4ae5dacfccmsh5b342d082b2681bp1448f8jsn441e97c6dc00',
+                'X-RapidAPI-Key': RapidApiKey,
                 'X-RapidAPI-Host': 'themealdb.p.rapidapi.com'
             }
         };
