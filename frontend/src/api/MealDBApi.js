@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RapidApiKey } from '../../config';
+import { RapidApiKey } from '../config';
 
 class MealDBApi {
 
@@ -32,7 +32,7 @@ class MealDBApi {
             url: 'https://themealdb.p.rapidapi.com/filter.php',
             params: { a: `${param}` },
             headers: {
-                'X-RapidAPI-Key': '4ae5dacfccmsh5b342d082b2681bp1448f8jsn441e97c6dc00',
+                'X-RapidAPI-Key': RapidApiKey,
                 'X-RapidAPI-Host': 'themealdb.p.rapidapi.com'
             }
         };
@@ -53,7 +53,7 @@ class MealDBApi {
 
     //    const url = 'https://themealdb.p.rapidapi.com/filter.php?a=';
     //    const headers = {
-    //        'X-RapidAPI-Key': '4ae5dacfccmsh5b342d082b2681bp1448f8jsn441e97c6dc00',
+    //        'X-RapidAPI-Key': RapidApiKey,
     //        'X-RapidAPI-Host': 'themealdb.p.rapidapi.com'
     //    }
     //    const params = (method === 'get')

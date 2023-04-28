@@ -89,7 +89,7 @@ function NewPostForm() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <Button type='submit' onSubmit={handleSubmit} sx={{ my: 2, color: 'black', display: 'block' }}>
+                            <Button type='submit' onSubmit={handleSubmit} sx={{ my: 2, color: 'white', display: 'block' }}>
                                 Submit
                             </Button>
                         </form>
