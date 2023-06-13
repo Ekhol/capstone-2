@@ -48,9 +48,6 @@ class User {
         password,
         firstName,
         lastName,
-        bio,
-        profilePicture,
-        isPublic,
         isAdmin,
         countryId
     }) {

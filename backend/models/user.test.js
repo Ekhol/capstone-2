@@ -66,7 +66,7 @@ describe("register", function () {
             isAdmin: true,
         });
         expect(user).toEqual({ ...newUser, isAdmin: true });
-        const found = await db.query("SELECT * FROM users WHERE username = 'new'");
+        const found = await db.query("SELECT * FROM users WHERE username = 'newU'");
         expect(found.rows.length).toEqual(1);
         expect(found.rows[0].is_admin).toEqual(true);
     });
